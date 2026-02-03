@@ -97,6 +97,8 @@ HDR Support Now Available for Windows 11 23H2+
 
 ## Acknowledgements
 
+- Special thanks to **[@ye4241](https://github.com/ye4241)** for submitting the package to Microsoft (WinGet).
+
 - Shoutout to **[MikeTheTech](https://github.com/itsmikethetech)** Project Manager, Owner, and Programmer
 - Shoutout to **[zjoasan](https://github.com/zjoasan)** Programmer. For scripts, EDID integration, and parts of installer.
 - Shoutout to **[Bud](https://github.com/bud3699)** Former Lead Programmer, has since left the project.
