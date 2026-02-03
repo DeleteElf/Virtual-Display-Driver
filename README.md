@@ -28,6 +28,8 @@ Unlike traditional monitors, this virtual display supports custom resolutions an
 > Before using the Virtual Display Driver, ensure the following dependencies are installed:
 > - **Microsoft Visual C++ Redistributable**  
 >   If you encounter the error `vcruntime140.dll not found`, download and install the latest version from the [Microsoft Visual C++ Redistributable page](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
+>
+> **Driver update safety:** If you're about to install **major GPU/chipset driver updates**, uninstall VDD first. If you get a black screen or display priority gets scrambled, boot into **Safe Mode** and uninstall VDD to recover.
 
 
 ## 🛠️ Installation
