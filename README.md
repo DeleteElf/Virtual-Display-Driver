@@ -23,6 +23,7 @@ Unlike traditional monitors, this virtual display supports custom resolutions an
 ## ⬇️ Download Latest Version
 
 - [Driver Installer (Windows 10/11)](https://github.com/VirtualDrivers/Virtual-Display-Driver/releases) - Check the [Releases](https://github.com/VirtualDrivers/Virtual-Display-Driver/releases) page for the latest version and release notes.
+- **Winget:** `winget install --id=VirtualDrivers.Virtual-Display-Driver -e`
 
 > [!IMPORTANT]
 > Before using the Virtual Display Driver, ensure the following dependencies are installed:
@@ -95,6 +96,8 @@ HDR Support Now Available for Windows 11 23H2+
 </table>
 
 ## Acknowledgements
+
+- Special thanks to **[@ye4241](https://github.com/ye4241)** for submitting the package to Microsoft (WinGet).
 
 - Shoutout to **[MikeTheTech](https://github.com/itsmikethetech)** Project Manager, Owner, and Programmer
 - Shoutout to **[zjoasan](https://github.com/zjoasan)** Programmer. For scripts, EDID integration, and parts of installer.
