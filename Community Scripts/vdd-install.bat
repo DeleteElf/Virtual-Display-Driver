@@ -24,7 +24,7 @@ REM 因为默认读的是注册表配置的目录，我们需要将注册表的�
 reg add "HKLM\SOFTWARE\MikeTheTech\VirtualDisplayDriver" /v VDDPATH /t REG_SZ /d "%CONFIG_DIR%" /f
 
 REM 安装具体的驱动
-powershell.exe -ExecutionPolicy Bypass -File "%~dp0\silent-install.ps1"
+powershell.exe -ExecutionPolicy Bypass -File "%~dp0silent-install.ps1"
 
 REM 初次安装后，还应设置成扩展这些显示器的显示模式
 powershell -NoProfile -ExecutionPolicy Bypass -Command "& "C:\Windows\System32\DisplaySwitch.exe" /extend"

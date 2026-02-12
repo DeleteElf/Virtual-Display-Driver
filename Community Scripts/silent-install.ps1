@@ -97,4 +97,4 @@ if ($check -match "Virtual Display Driver") {
 
     Write-Host "Driver installation completed." -ForegroundColor Green;
 }
-Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue;
+#Remove-Item -Path $tempDir -Recurse -Force -ErrorAction SilentlyContinue;
