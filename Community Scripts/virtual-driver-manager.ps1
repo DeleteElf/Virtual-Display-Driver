@@ -390,7 +390,7 @@ finally {
         if (Test-Path $tempDir) {
             # This Write-Verbose message will not be visible without -Verbose, but is good practice.
             Write-Verbose "Cleaning up temporary directory: $tempDir"
-            Remove-Item -Path $tempDir -Recurse -Force
+            #Remove-Item -Path $tempDir -Recurse -Force
         }
     }
 }
