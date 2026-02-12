@@ -1,4 +1,5 @@
 @echo off
+chcp 65001
 
 :: Use PowerShell for elevation check and execution
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^

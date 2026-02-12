@@ -1,3 +1,4 @@
 @echo off
-powershell.exe -ExecutionPolicy Bypass -File "silent-uninstall.ps1"
-pause
+chcp 65001
+
+powershell.exe -ExecutionPolicy Bypass -File "%~dp0\silent-uninstall.ps1"
