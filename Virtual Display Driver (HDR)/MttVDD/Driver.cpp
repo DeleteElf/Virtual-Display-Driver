@@ -1,4 +1,4 @@
-/*++
+﻿/*++
 
 Copyright (c) Microsoft Corporation
 
@@ -4309,8 +4309,8 @@ NTSTATUS VirtualDisplayDriverEvtIddCxMonitorSetDefaultHdrMetadata(
 			  << "Green Primary: (" << metadata.display_primaries_x[1] << ", " << metadata.display_primaries_y[1] << ")\n" 
 			  << "Blue Primary: (" << metadata.display_primaries_x[2] << ", " << metadata.display_primaries_y[2] << ")\n"
 			  << "White Point: (" << metadata.white_point_x << ", " << metadata.white_point_y << ")\n"
-			  << "Max Mastering Luminance: " << metadata.max_display_mastering_luminance << " (0.0001 cd/m² units)\n"
-			  << "Min Mastering Luminance: " << metadata.min_display_mastering_luminance << " (0.0001 cd/m² units)\n"
+			  << "Max Mastering Luminance: " << metadata.max_display_mastering_luminance << " (0.0001 cd/mm units)\n"
+			  << "Min Mastering Luminance: " << metadata.min_display_mastering_luminance << " (0.0001 cd/mm units)\n"
 			  << "Max Content Light Level: " << metadata.max_content_light_level << " nits\n"
 			  << "Max Frame Average Light Level: " << metadata.max_frame_avg_light_level << " nits";
 	vddlog("i", logStream.str().c_str());
