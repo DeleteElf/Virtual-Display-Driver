@@ -9,9 +9,8 @@ $tempDir = $PSScriptRoot;
 New-Item -ItemType Directory -Path $tempDir -Force | Out-Null;
 $NefConExe = Join-Path $tempDir "x64\nefconc.exe";
 Push-Location $tempDir;
-& $NefConExe remove "Root\CgTwVdd";
+& $NefConExe remove "Root\MttVDD";
 & $NefConExe --uninstall-driver --inf-path .\VirtualDisplayDriver\VirtualDisplayDriver.inf;
 Write-Host "Driver installation removed." -ForegroundColor Green;
-Start-Sleep -Seconds 2;
 Pop-Location;
 

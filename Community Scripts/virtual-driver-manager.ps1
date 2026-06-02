@@ -153,10 +153,6 @@ if (-Not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 #----------------------------------------------------------------------
 # SECTION 4: SETUP AND GUARANTEED CLEANUP
 #----------------------------------------------------------------------
-# Create a unique temporary directory to avoid conflicts if the script is run multiple times concurrently.
-$tempDir = Join-Path $env:TEMP "VDD-Manager-$(Get-Random)"
-New-Item -ItemType Directory -Path $tempDir -Force | Out-Null
-Write-Verbose "Created temporary directory at $tempDir"
 
 # Use a try/catch/finally block to ensure that no matter what happens (success or error),
 # the 'finally' block will ALWAYS run to clean up temporary files.
@@ -175,11 +171,11 @@ try {
     function Get-VirtualDisplayDevice {
         # Find the device by its user-friendly name first for readability.
         $device = Get-PnpDevice -Class Display -ErrorAction Silentlycontinue | Where-Object {
-            $_.FriendlyName -in ('CgTeamwork Vdd Device', 'CgTeamwork Vdd')
+            $_.FriendlyName -in ('IddSampleDriver Device HDR', 'Virtual Display Driver')
         }
         # Fallback: If not found by name, use the more specific and stable Hardware ID.
         if (-not $device) {
-            $device = Get-PnpDevice -HardwareID "Root\CgTwVdd" -ErrorAction Silentlycontinue
+            $device = Get-PnpDevice -HardwareID "Root\MttVDD" -ErrorAction Silentlycontinue
         }
         return $device
     }
@@ -246,15 +242,7 @@ finally {
     # This block ALWAYS runs, ensuring cleanup happens after success or failure.
     # If the user ran with -Verbose, we assume they are debugging.
     # We will NOT delete the temporary folder so they can inspect its contents.
-    if ($PSBoundParameters.ContainsKey('Verbose')) {
-        Write-Verbose "Verbose mode is active. Temporary directory will not be deleted so you can inspect its contents: $tempDir"
-    }
-    else {
-        if (Test-Path $tempDir) {
-            # This Write-Verbose message will not be visible without -Verbose, but is good practice.
-            Write-Verbose "Cleaning up temporary directory: $tempDir"
-        }
-    }
+    
 }
 
 # Add a final pause unless in Silent or JSON mode so the user can see the output.

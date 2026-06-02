@@ -31,12 +31,12 @@ if (-not (Test-Path $NefConExe))
 }
 
 # Check if VDD is installed. Or else, install it
-$check = & $NefConExe --find-hwid ---hardware-id "Root\CgTwVdd";
-if ($check -match "CgTeamwork Vdd Device") {
+$check = & $NefConExe --find-hwid ---hardware-id "Root\MttVDD";
+if ($check -match "Virtual Display Driver") {
     Write-Host "Virtual Display Driver already present. No installation." -ForegroundColor Green;
 } else {
     # Extract the signPath certificates
-    $catFile = Join-Path $tempDir 'VirtualDisplayDriver\CgTwVdd.cat';
+    $catFile = Join-Path $tempDir 'VirtualDisplayDriver\mttvdd.cat';
     if (-not (Test-Path $catFile)){
         # Download and unzip VDD
         $driverZipPath = Join-Path $tempDir 'driver.zip';
@@ -72,7 +72,7 @@ if ($check -match "CgTeamwork Vdd Device") {
     # Install VDD
     Write-Host "Installing Virtual Display Driver silently..." -ForegroundColor Cyan;
     Push-Location $tempDir;
-    & $NefConExe install .\VirtualDisplayDriver\VirtualDisplayDriver.inf "Root\CgTwVdd";
+    & $NefConExe install .\VirtualDisplayDriver\MttVDD.inf "Root\MttVDD";
     Start-Sleep -Seconds 2;
     Pop-Location;
 
