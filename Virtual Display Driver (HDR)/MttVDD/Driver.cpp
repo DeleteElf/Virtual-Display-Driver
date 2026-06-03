@@ -40,10 +40,6 @@ Environment:
 #include <map>
 #include <set>
 
-
-
-
-
 #define PIPE_NAME L"\\\\.\\pipe\\MTTVirtualDisplayPipe"
 
 #pragma comment(lib, "xmllite.lib")

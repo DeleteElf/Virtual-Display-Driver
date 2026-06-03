@@ -3,7 +3,7 @@
 param(
     # Latest stable version of NefCon installer
     [Parameter(Mandatory=$false)]
-    [string]$NefConURL = "https://github.com/nefarius/nefcon/releases/download/v1.14.0/nefcon_v1.14.0.zip",
+    [string]$NefConURL = "https://github.com/nefarius/nefcon/releases/download/v1.17.40/nefcon_v1.17.40.zip",
     
     # Latest stable version of VDD driver only
     [Parameter(Mandatory=$false)]
@@ -14,30 +14,12 @@ param(
 $tempDir = $PSScriptRoot;
 New-Item -ItemType Directory -Path $tempDir -Force | Out-Null;
 
-# nefcon not enable disable command,so...we keep this
-# Define path to devcon executable
-$devconExe = Join-Path $tempDir "devcon.exe";
-# Download and run DevCon Installer
-if (-not (Test-Path $devconExe))
-{
-    $devconPath = Join-Path $tempDir "Devcon.Installer.exe";
-    if (-not (Test-Path $devconPath))
-    {
-        Write-Host "Downloading DevCon..." -ForegroundColor Cyan;
-        Invoke-WebRequest -Uri "https://github.com/Drawbackz/DevCon-Installer/releases/download/1.4-rc/Devcon.Installer.exe" -OutFile $devconPath;
-    }
-    Write-Host "Installing DevCon..." -ForegroundColor Cyan;
-    Start-Process -FilePath $devconPath -ArgumentList "install -hash $DevconHash -update -dir `"$tempDir`"" -Wait -NoNewWindow;
-    Write-Host "Installing DevCon Completed..." -ForegroundColor Cyan;
-}
-
 # Define path to nefcon executable
 $NefConExe = Join-Path $tempDir "x64\nefconc.exe";
 # Download and run DevCon Installer
 if (-not (Test-Path $NefConExe))
 {
     $NefConZipPath = Join-Path $tempDir "nefcon.zip";
-#    $devconPath = Join-Path $tempDir "Devcon.Installer.exe";
     if (-not (Test-Path $NefConZipPath))
     {
         Write-Host "Downloading NefCon..." -ForegroundColor Cyan;
@@ -45,7 +27,6 @@ if (-not (Test-Path $NefConExe))
     }
     Write-Host "extracting NefCon..." -ForegroundColor Cyan;
     Expand-Archive -Path $NefConZipPath -DestinationPath $tempDir -Force -ErrorAction Stop;
-#    Start-Process -FilePath $devconPath -ArgumentList "install -hash $DevconHash -update -dir `"$tempDir`"" -Wait -NoNewWindow;
     Write-Host "extracting NefCon Completed..." -ForegroundColor Cyan;
 }
 
