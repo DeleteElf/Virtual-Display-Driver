@@ -7,6 +7,7 @@
 2. update netcon to v1.17.40,add netconc.exe and netconw.exe to x64 directory.
 3. remove install and uninstall from virtual-driver-manager.ps1,use vdd-install.bat and vdd-uninstall.bat instead.
 4. add silent-uninstall.ps1
+5. repair all vdd`s product_id is same.now their have self id.
 
 ##### 1.0.26.021201
 1. update install scripts.
