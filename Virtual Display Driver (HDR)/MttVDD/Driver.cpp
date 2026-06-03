@@ -3478,14 +3478,14 @@ vector<BYTE> hardcodedEdid =
 };
 
 
-void modifyEdid(vector<BYTE>& edid) {
+void modifyEdid(vector<BYTE>& edid,UINT displayIndex=0) {
 	if (edid.size() < 12) {
 		return;
 	}
 
 	edid[8] = 0x36;
 	edid[9] = 0x94;
-	edid[10] = 0x37;
+	edid[10] = 0x37+displayIndex;
 	edid[11] = 0x13;
 }
 
@@ -3812,12 +3812,12 @@ void IndirectDeviceContext::CreateMonitor(unsigned int index) {
 	// Changed from using const_cast to data() to safely access the EDID data.
 	// This improves type safety and code readability, as it eliminates the need for casting 
 	// and ensures we are directly working with the underlying container of known monitor EDID data.
-	MonitorInfo.MonitorDescription.pData = IndirectDeviceContext::s_KnownMonitorEdid.data();
 
-
-
-
-
+    memcpy(MonitorInfo.MonitorDescription.pData, IndirectDeviceContext::s_KnownMonitorEdid.data(),
+           sizeof(IndirectDeviceContext::s_KnownMonitorEdid.data()[0]) * MonitorInfo.MonitorDescription.DataSize );
+    MonitorInfo.MonitorDescription.pData[10] = 0x37 + index;
+    LOG_INFO("使用默认的edid 的 product_id: %d",MonitorInfo.MonitorDescription.pData[10]);
+    MonitorInfo.MonitorDescription.pData[127]= calculateChecksum(reinterpret_cast<char*>(MonitorInfo.MonitorDescription.pData));
 
 	// ==============================
 	// TODO: The monitor's container ID should be distinct from "this" device's container ID if the monitor is not
