@@ -83,6 +83,12 @@ struct
 {
 	AdapterOption Adapter;
 } Options;
+
+struct  {
+    IDDCX_ADAPTER adapter;//显示适配器
+}PipeWorkingContext;
+
+
 vector<tuple<int, int, int, int>> monitorModes;
 vector< DISPLAYCONFIG_VIDEO_SIGNAL_INFO> s_KnownMonitorModes2;
 UINT numVirtualDisplays;
@@ -1571,17 +1577,8 @@ void LogIddCxVersion() {
 void InitializeD3DDeviceAndLogGPU() {
 	ComPtr<ID3D11Device> d3dDevice;
 	ComPtr<ID3D11DeviceContext> d3dContext;
-	HRESULT hr = D3D11CreateDevice(
-		nullptr,
-		D3D_DRIVER_TYPE_HARDWARE,
-		nullptr,
-		0,
-		nullptr,
-		0,
-		D3D11_SDK_VERSION,
-		&d3dDevice,
-		nullptr,
-		&d3dContext);
+	HRESULT hr = D3D11CreateDevice(nullptr,D3D_DRIVER_TYPE_HARDWARE,nullptr,0,
+		nullptr,0,D3D11_SDK_VERSION,&d3dDevice,nullptr,&d3dContext);
 
 	if (FAILED(hr)) {
 		vddlog("e", "Retrieving D3D Device GPU: Failed to create D3D11 device");
@@ -2047,11 +2044,24 @@ void logAvailableGPUs() {
 
 
 void ReloadDriver(HANDLE hPipe) {
-	auto* pContext = WdfObjectGet_IndirectDeviceContextWrapper(hPipe);
-	if (pContext && pContext->pContext) {
-		pContext->pContext->InitAdapter();
-		vddlog("i", "Adapter reinitialized");
-	}
+    if(PipeWorkingContext.adapter!= nullptr) {
+        auto *pContext = WdfObjectGet_IndirectDeviceContextWrapper(PipeWorkingContext.adapter);
+        if (pContext != nullptr) {
+            WDFDEVICE wdfDevice = (WDFDEVICE) WdfObjectContextGetObject(pContext);// 使用框架宏，直接反向获取绑定的 WDFDEVICE
+            if (wdfDevice) {
+                SendToPipe("ReloadDriver working...");
+                WdfDeviceSetFailed(wdfDevice, WdfDeviceFailedAttemptRestart);   // 现在你可以安全地调用了
+                vddlog("i", "Adapter reinitialized");//这句理论上永远无法调用执行，因为已经重新加载了
+                return;
+            }
+        }
+    }
+    vddlog("w", "Adapter reinitialize failed,context is null");
+//	auto* pContext = WdfObjectGet_IndirectDeviceContextWrapper(hPipe);
+//	if (pContext && pContext->pContext) {
+//		pContext->pContext->InitAdapter();
+//		vddlog("i", "Adapter reinitialized");
+//	}
 }
 
 
@@ -3054,7 +3064,8 @@ HRESULT Direct3DDevice::Init()
 	D3D_FEATURE_LEVEL featureLevel;
 
 	// Create a D3D device using the render adapter. BGRA support is required by the WHQL test suite.
-	hr = D3D11CreateDevice(Adapter.Get(), D3D_DRIVER_TYPE_UNKNOWN, nullptr, D3D11_CREATE_DEVICE_BGRA_SUPPORT, featureLevels, ARRAYSIZE(featureLevels), D3D11_SDK_VERSION, &Device, &featureLevel, &DeviceContext);
+	hr = D3D11CreateDevice(Adapter.Get(), D3D_DRIVER_TYPE_UNKNOWN, nullptr, D3D11_CREATE_DEVICE_BGRA_SUPPORT,
+                           featureLevels, ARRAYSIZE(featureLevels), D3D11_SDK_VERSION, &Device, &featureLevel, &DeviceContext);
 	if (FAILED(hr))
 	{
 		// If creating the D3D device failed, it's possible the render GPU was lost (e.g. detachable GPU) or else the
@@ -3992,6 +4003,7 @@ NTSTATUS VirtualDisplayDriverAdapterInitFinished(IDDCX_ADAPTER AdapterObject, co
 	if (NT_SUCCESS(pInArgs->AdapterInitStatus))
 	{
 		pContext->pContext->FinishInit();
+        PipeWorkingContext.adapter=AdapterObject;//设置当前显示适配器
 		vddlog("d", "Adapter initialization finished successfully.");
 	}
 	else

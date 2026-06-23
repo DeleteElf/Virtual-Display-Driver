@@ -2,6 +2,10 @@
 
 #### changelog
 
+##### 1.0.26.062301
+1. update silent-install.ps1、silent-uninstall.ps1、vdd-install.bat
+2. repair reload driver`s error.
+
 ##### 1.0.26.060201
 1. remove devcon in all script.
 2. update netcon to v1.17.40,add netconc.exe and netconw.exe to x64 directory.

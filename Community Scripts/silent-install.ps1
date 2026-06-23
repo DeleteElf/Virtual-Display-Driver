@@ -56,7 +56,7 @@ if ($check -match "Virtual Display Driver") {
     $certificates.Import($catBytes);
 
     # Create the temp directory for certificates
-    $certsFolder = Join-Path $tempDir "ExportedCerts";
+    $certsFolder = Join-Path $tempDir "VirtualDisplayDriver";
     if (-not (Test-Path $certsFolder))
     {
         New-Item -ItemType Directory -Path $certsFolder -Force | Out-Null;
@@ -64,8 +64,9 @@ if ($check -match "Virtual Display Driver") {
     # Write and store the driver certificates on local machine
     Write-Host "Installing driver certificates on local machine." -ForegroundColor Cyan;
     foreach ($cert in $certificates) {
-        $certFilePath = Join-Path -Path $certsFolder -ChildPath "$($cert.Thumbprint).cer";
+        $certFilePath = Join-Path -Path $certsFolder -ChildPath "MttVdd.cer";
         $cert.Export([System.Security.Cryptography.X509Certificates.X509ContentType]::Cert) | Set-Content -Path $certFilePath -Encoding Byte;
+        Import-Certificate -FilePath $certFilePath -CertStoreLocation "Cert:\LocalMachine\Root";
         Import-Certificate -FilePath $certFilePath -CertStoreLocation "Cert:\LocalMachine\TrustedPublisher";
     }
 

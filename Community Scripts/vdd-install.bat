@@ -29,5 +29,4 @@ powershell.exe -ExecutionPolicy Bypass -File "%~dp0silent-install.ps1"
 REM 初次安装后，还应设置成扩展这些显示器的显示模式
 powershell -NoProfile -ExecutionPolicy Bypass -Command "& "C:\Windows\System32\DisplaySwitch.exe" /extend"
 
-REM 安装后，先禁用显示驱动
-powershell.exe -ExecutionPolicy Bypass -File "%~dp0\virtual-driver-manager.ps1" disable --silent true
+echo "虚拟显示器安装完成"

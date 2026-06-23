@@ -10,7 +10,7 @@ New-Item -ItemType Directory -Path $tempDir -Force | Out-Null;
 $NefConExe = Join-Path $tempDir "x64\nefconc.exe";
 Push-Location $tempDir;
 & $NefConExe remove "Root\MttVDD";
-& $NefConExe --uninstall-driver --inf-path .\VirtualDisplayDriver\VirtualDisplayDriver.inf;
+& $NefConExe --uninstall-driver --inf-path .\VirtualDisplayDriver\MttVDD.inf;
 Write-Host "Driver installation removed." -ForegroundColor Green;
 Pop-Location;
 
