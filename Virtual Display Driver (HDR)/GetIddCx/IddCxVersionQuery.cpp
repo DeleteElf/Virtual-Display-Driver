@@ -181,12 +181,12 @@ bool execute_pipe_command(const wchar_t *pipe_name, const wchar_t *command, std:
 int main(int argc, char* argv[]) {
     if(argc==3) {
         /* 命令参考如下：
-         IddCxVersionQuery \\.\pipe\CgTwVdd RELOAD_DRIVER
+         IddCxVersionQuery \\.\pipe\NztVdd RELOAD_DRIVER
          */
         std::wstring pipe = StringToWString(argv[1]);
         std::wstring command = StringToWString(argv[2]);
 //        std::wstring command = L"RELOAD_DRIVER";
-//        const wchar_t *kVddPipeName = L"\\\\.\\pipe\\CgTwVdd";
+//        const wchar_t *kVddPipeName = L"\\\\.\\pipe\\NztVdd";
         std::string result;
 //        bool success = execute_pipe_command(kVddPipeName, command.c_str(), &result);
         bool success = execute_pipe_command(pipe.c_str(), command.c_str(), &result);

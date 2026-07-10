@@ -57,7 +57,7 @@ Environment:
 //
 // Driver specific #defines
 //
-#if UMDF_VERSION_MAJOR == 2 && UMDF_VERSION_MINOR == 0
-    // TODO: Update the name of the tracing provider
-    #define MYDRIVER_TRACING_ID      L"Microsoft\\UMDF2.0\\IddSampleDriver V1.0"
-#endif
+
+// TODO: Use a unique driver tracing ID here,
+// see https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/adding-wpp-software-tracing-to-a-windows-driver
+#define MYDRIVER_TRACING_ID L"Microsoft\\UMDF2.25\\VirtualDisplayDriver v1.0"

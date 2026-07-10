@@ -1,0 +1,18 @@
+#include <windows.h>
+#include <ntverp.h>
+#include "version.h"
+
+#define VER_FILETYPE                VFT_DLL
+#define VER_FILESUBTYPE             VFT_UNKNOWN
+#define VER_FILEDESCRIPTION_STR     "UMDF Indirect Display Driver"
+#define VER_INTERNALNAME_STR        "Virtual Display Device"
+#define VER_ORIGINALFILENAME_STR    "VirtualDisplayDriver.dll"
+
+
+#define VER_PRODUCTVERSION_STR VERSION
+#define VER_FILEVERSION_STR VERSION
+#define VER_COMPANYNAME_STR "Nzt"
+#define VER_LEGALCOPYRIGHT_STR "Copyright (C) 2026"
+#define VER_PRODUCTNAME_STR "VirtualDisplayDriver"
+
+#include "common.ver"
