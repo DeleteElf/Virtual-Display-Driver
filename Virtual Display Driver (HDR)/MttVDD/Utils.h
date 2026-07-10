@@ -14,7 +14,7 @@
 #include "base.h"
 
 #ifndef REG_SZ_NODE
-#define REG_SZ_NODE L"SOFTWARE\\CgTeamwork\\VirtualDisplayDriver"
+#define REG_SZ_NODE L"SOFTWARE\\Nzt\\VirtualDisplayDriver"
 #endif // !REG_SZ_NODE
 
 enum class LogLevel{
