@@ -19,11 +19,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Inf Include="VirtualDisplayDriver.inf">
-      <Filter>Driver Files</Filter>
-    </Inf>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Driver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -60,5 +55,10 @@
     <ResourceCompile Include="VirtualDisplayDriver.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VirtualDisplayDriver.inf">
+      <Filter>Driver Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

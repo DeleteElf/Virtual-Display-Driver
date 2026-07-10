@@ -31,12 +31,12 @@ if (-not (Test-Path $NefConExe))
 }
 
 # Check if VDD is installed. Or else, install it
-$check = & $NefConExe --find-hwid ---hardware-id "Root\MttVDD";
+$check = & $NefConExe --find-hwid ---hardware-id "Root\NztVdd";
 if ($check -match "Virtual Display Driver") {
     Write-Host "Virtual Display Driver already present. No installation." -ForegroundColor Green;
 } else {
     # Extract the signPath certificates
-    $catFile = Join-Path $tempDir 'VirtualDisplayDriver\mttvdd.cat';
+    $catFile = Join-Path $tempDir 'VirtualDisplayDriver\NztVdd.cat';
     if (-not (Test-Path $catFile)){
         # Download and unzip VDD
         $driverZipPath = Join-Path $tempDir 'driver.zip';
@@ -64,7 +64,7 @@ if ($check -match "Virtual Display Driver") {
     # Write and store the driver certificates on local machine
     Write-Host "Installing driver certificates on local machine." -ForegroundColor Cyan;
     foreach ($cert in $certificates) {
-        $certFilePath = Join-Path -Path $certsFolder -ChildPath "MttVdd.cer";
+        $certFilePath = Join-Path -Path $certsFolder -ChildPath "NztVdd.cer";
         $cert.Export([System.Security.Cryptography.X509Certificates.X509ContentType]::Cert) | Set-Content -Path $certFilePath -Encoding Byte;
         Import-Certificate -FilePath $certFilePath -CertStoreLocation "Cert:\LocalMachine\Root";
         Import-Certificate -FilePath $certFilePath -CertStoreLocation "Cert:\LocalMachine\TrustedPublisher";
@@ -73,7 +73,7 @@ if ($check -match "Virtual Display Driver") {
     # Install VDD
     Write-Host "Installing Virtual Display Driver silently..." -ForegroundColor Cyan;
     Push-Location $tempDir;
-    & $NefConExe install .\VirtualDisplayDriver\MttVDD.inf "Root\MttVDD";
+    & $NefConExe install .\VirtualDisplayDriver\NztVdd.inf "Root\NztVdd";
     Start-Sleep -Seconds 2;
     Pop-Location;
 

@@ -30,9 +30,6 @@
     <ClInclude Include="Trace.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Inf Include="VirtualDisplayDriver.inf" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2D54CB75-8B17-4F11-97DC-847B0244CD46}</ProjectGuid>
     <TemplateGuid>{32909489-7be5-497b-aafa-db6669d9b44b}</TemplateGuid>
@@ -202,6 +199,11 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="VirtualDisplayDriver.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Inf Include="VirtualDisplayDriver.inf">
+      <FileType>Document</FileType>
+    </Inf>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

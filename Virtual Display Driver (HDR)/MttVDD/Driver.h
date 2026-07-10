@@ -17,7 +17,6 @@
 #include <string>
 
 #include "Trace.h"
-#include "base.h"
 
 const int STREAM_LOG_INFO_LEN = 120;
 const int monitorMaxCount = 4;//默认最多4个显示器
@@ -123,8 +122,6 @@ ShareStream* getShareStream(UINT idx);
 bool checkStreamEncoder(ShareStream* stream);
 void setStreamEncoder(ShareStream* stream, bool valid);
 void setStreamLog(ShareStream* stream, int level, const char* info);
-int readEncoderParam(ShareStream* stream, int is_encoding, EncodeParam& param, int& renew);
-int readEncoderConfig(ShareStream* stream, EncodeConfig& config);
 int waitStream(ShareStream* stream);
 int pauseStream(UINT idx);
 

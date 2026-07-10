@@ -11,8 +11,6 @@
 #include <sstream>
 #include <filesystem>
 
-#include "base.h"
-
 #ifndef REG_SZ_NODE
 #define REG_SZ_NODE L"SOFTWARE\\Nzt\\VirtualDisplayDriver"
 #endif // !REG_SZ_NODE
