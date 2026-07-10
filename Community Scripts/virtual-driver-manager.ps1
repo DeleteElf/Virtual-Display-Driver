@@ -153,7 +153,6 @@ if (-Not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 #----------------------------------------------------------------------
 # SECTION 4: SETUP AND GUARANTEED CLEANUP
 #----------------------------------------------------------------------
-
 # Use a try/catch/finally block to ensure that no matter what happens (success or error),
 # the 'finally' block will ALWAYS run to clean up temporary files.
 try {

@@ -1,20 +1,18 @@
-# Scripts
+#Scripts
 
-This is a collection of Powershell scripts, written during the whole driver development. PR's are welcome for improvements or other/more functions. There haven't been a focus on keeping the scripts "up to date" all the time. Which means changes that might have occurred in the modules that these scripts depend upon, haven't been corrected either. These are more ment as a framework for "tinkers" to make use of Powershell to change settings on the fly. To use these, you should be at least be comfortable with Powershell and understand Admin privilegiets, risk/reward.
+这是一组在驱动开发过程中编写的PowerShell脚本集。欢迎提出改进意见或新增其他功能。我们并未始终专注于保持脚本的"时效性"，这意味着这些脚本所依赖的模块可能发生的变更也未得到修正。它们更多是作为一个框架，供"实验者"利用PowerShell即时修改设置。使用这些脚本需至少熟悉PowerShell并理解管理员权限的风险与回报。
 
-Anyway here is a short description of each script:
-| Script                 | Description      |
-| ---------------------- | ---------------- |
-| [changeres‑VDD.ps1](changeres-VDD.ps1)    | Hot‑swaps the virtual panel’s resolution to the width and height you pass on the command line. |
-| [get_disp_num.ps1](get_disp_num.ps1)     | Returns the numeric adapter ID of the VDD screen by scanning WMI for your custom “MTT1337” monitor identifier. |
-| [HDRswitch‑VDD.ps1](HDRswitch-VDD.ps1)    | Flips the virtual screen between SDR (8‑bit) and HDR (10‑bit) colour modes in one click. Unsure if it works anylonger, since changes in modules |
-| [modules_install.bat](modules_install.bat)  | Opens an elevated PowerShell session that installs the DisplayConfig and MonitorConfig modules so every helper script has its prerequisites. |
-| [primary‑VDD.ps1](primary-VDD.ps1)      | Makes the virtual display the Windows primary so you can stream or remote‑desktop from a headless rig. |
-| [refreshrate‑VDD.ps1](refreshrate.ps1)  | Changes the VDD monitor’s refresh rate (30‑‑500 Hz) after validating the value against a safe list. |
-| [rotate‑VDD.ps1](rotate-VDD.ps1)       | Rotates the virtual display 90°, 180°, or 270° by calling DisplayConfig with the matching rotation token. |
-| [scale‑VDD.ps1](scale-VDD.ps1)        | Sets or resets DPI scaling on the virtual monitor, respecting Windows’ maximum allowed scale factor. |
-| [set‑dependencies.ps1](set-dependencies.ps1) | Verifies the exact module versions required, installs or imports them on demand, and aborts downstream execution if anything is missing. |
-| [silent‑install.ps1](silent-install.ps1)   | Silently fetches the latest signed Virtual Display Driver from GitHub and installs it via Nefcon, then tidies up the temp workspace. |
-| [toggle‑VDD.ps1](toggle-VDD.ps1)       | A one‑click PowerShell switch that first elevates itself to admin, then enables or disables your Virtual Display Driver and immediately flips Windows between Extended and Cloned desktops, perfect for streamers who need to bring a virtual monitor online or offline on demand. |
-| [virtual-driver-manager.ps1](virtual-driver-manager.ps1) | A comprehensive script to manage the Virtual Display Driver. It can install, uninstall, enable, disable, toggle, and check the status of the driver. |
-| [winp‑VDD.ps1](winp-VDD.ps1)         | A lightweight companion script that leaves the driver untouched and simply yo‑yos Windows between Extend and Clone modes, giving you an instant “presentation toggle” when the virtual display should stay permanently enabled. |
+以下是每段脚本的简短说明：
+
+silent‑install.ps1 – 静默地从GitHub获取最新的已签名虚拟显示驱动程序，通过DevCon进行安装，然后清理临时工作区。
+modules_install.bat – 打开一个提升的PowerShell会话，该会话安装DisplayConfig和MonitorConfig模块，以便每个帮助脚本都有其先决条件。
+set‑dependencies.ps1 – 验证所需的确切模块版本，按需安装或导入它们，如果缺少任何内容，则中止下游执行。
+get_disp_num.ps1 – 通过扫描WMI以查找自定义的“MTT1337”监视器标识符，返回VDD屏幕的数字适配器ID。
+changeres‑VDD.ps1 – 将虚拟面板的分辨率热交换为您在命令行上传递的宽度和高度。
+refreshrate‑VDD.ps1 – 根据安全列表验证值后，更改VDD监视器的刷新率（30-500Hz）。
+rotate‑VDD.ps1 – 将虚拟显示器旋转90°，180°，或270°通过使用匹配的旋转标记调用DisplayConfig。
+scale‑VDD.ps1 – 在虚拟监视器上设置或重置DPI缩放，遵守Windows允许的最大缩放因子。
+HDRswitch‑VDD.ps1 – 一键即可在SDR（8位）和HDR（10位）颜色模式之间翻转虚拟屏幕。不确定它是否还能继续工作，因为moduels发生了变化）
+    primary‑VDD.ps1 – 将虚拟显示器设置为Windows主显示器，以便您可以从无头设备流式传输或远程桌面。
+toggle‑VDD.ps1 – 一键式PowerShell开关，首先将自身提升为管理员，然后启用或禁用您的虚拟显示驱动程序，并立即在扩展和克隆桌面之间翻转Windows，非常适合需要按需将虚拟显示器联机或脱机的流媒体用户。
+winp‑VDD.ps1 – 一个轻量级的配套脚本，使驱动程序不受影响，只需在扩展和克隆模式之间切换窗口，在虚拟显示器应永久启用时为您提供即时的“演示切换”。

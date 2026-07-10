@@ -12,5 +12,6 @@ Push-Location $tempDir;
 & $NefConExe remove "Root\MttVDD";
 & $NefConExe --uninstall-driver --inf-path .\VirtualDisplayDriver\MttVDD.inf;
 Write-Host "Driver installation removed." -ForegroundColor Green;
+Start-Sleep -Seconds 2;
 Pop-Location;
 
